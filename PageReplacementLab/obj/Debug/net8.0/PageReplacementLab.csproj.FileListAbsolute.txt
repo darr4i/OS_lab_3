@@ -1,0 +1,15 @@
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.AssemblyInfo.cs
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.sourcelink.json
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\bin\Debug\net8.0\PageReplacementLab.exe
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\bin\Debug\net8.0\PageReplacementLab.deps.json
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\bin\Debug\net8.0\PageReplacementLab.runtimeconfig.json
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\bin\Debug\net8.0\PageReplacementLab.dll
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\bin\Debug\net8.0\PageReplacementLab.pdb
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.dll
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\refint\PageReplacementLab.dll
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.pdb
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\PageReplacementLab.genruntimeconfig.cache
+C:\Users\HP\Desktop\универ\ос\OS_lab_3\PageReplacementLab\obj\Debug\net8.0\ref\PageReplacementLab.dll
