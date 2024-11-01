@@ -51,14 +51,30 @@ namespace PageReplacementLab
 
         private PhysPage RandomReplacement()
         {
-            int idx = random.Next(0, PhysPageBusyList.Count);
-            return PhysPageBusyList[idx];
+            int idx = random.Next(PhysPageBusyList.Count);
+            var selectedPage = PhysPageBusyList[idx];
+            Console.WriteLine($"Page replacement: [PPN: {selectedPage.PPN}] (Random)");
+            return selectedPage;
         }
 
         private PhysPage NRUReplacement()
         {
-            var candidates = PhysPageBusyList.Where(page => !page.PageTable[page.Idx].R).ToList();
-            return candidates.Count > 0 ? candidates[random.Next(candidates.Count)] : RandomReplacement();
+            var candidates = PhysPageBusyList
+                .Where(page => page.PageTable != null && page.PageTable.Length > page.Idx && !page.PageTable[page.Idx].R)
+                .ToList();
+
+            PhysPage selectedPage;
+            if (candidates.Count > 0)
+            {
+                selectedPage = candidates[random.Next(candidates.Count)];
+                Console.WriteLine($"Page replacement: [PPN: {selectedPage.PPN}] (NRU)");
+            }
+            else
+            {
+                selectedPage = RandomReplacement();
+            }
+
+            return selectedPage;
         }
 
         public void FreeProc(Proc proc)
@@ -82,7 +98,10 @@ namespace PageReplacementLab
         {
             foreach (var page in PhysPageBusyList)
             {
-                page.PageTable[page.Idx].R = false; 
+                if (page.PageTable != null && page.PageTable.Length > page.Idx)
+                {
+                    page.PageTable[page.Idx].R = false; 
+                }
             }
         }
     }

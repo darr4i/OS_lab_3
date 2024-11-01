@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PageReplacementLab")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fd83c48b8578283aeea6a47a7c5ba0cd4ddc470")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f97f26aea3d9c76bd28a3b789d5c69948a93d439")]
 [assembly: System.Reflection.AssemblyProductAttribute("PageReplacementLab")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PageReplacementLab")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
