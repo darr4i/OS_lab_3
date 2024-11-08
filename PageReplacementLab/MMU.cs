@@ -11,19 +11,19 @@ namespace PageReplacementLab
             PageAccessNum = 0;
         }
 
-        public void AccessPage(PageTableEntry[] pageTable, int idx, bool isWrite)
+      public void AccessPage(PageTableEntry[] pageTable, int idx, bool isWrite, bool useNRU)
+    {
+        PageAccessNum++;
+        if (!pageTable[idx].P)
         {
-            PageAccessNum++;
-            if (!pageTable[idx].P)
-            {
-                kernel.PageFaultHandler(pageTable, idx);
-            }
+         kernel.PageFaultHandler(pageTable, idx, useNRU);
+        }
 
-            pageTable[idx].R = true;  
-            if (isWrite)
-            {
-                pageTable[idx].M = true; 
-            }
+        pageTable[idx].R = true;
+     if (isWrite) pageTable[idx].M = true;
+    }
+
+
         }
     }
-}
+

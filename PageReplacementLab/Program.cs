@@ -48,7 +48,8 @@ namespace PageReplacementLab
 
             foreach (var proc in procQueue)
             {
-                proc.AccessPages(MIN_REQ, MAX_REQ, kernel.Mmu);
+                proc.AccessPages(MIN_REQ, MAX_REQ, kernel.Mmu, useNRU: true); 
+
 
                 if (proc.Completed)
                 {

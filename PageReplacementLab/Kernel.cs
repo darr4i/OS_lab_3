@@ -25,10 +25,10 @@ namespace PageReplacementLab
             Mmu = new MMU(this);
         }
 
-        public void PageFaultHandler(PageTableEntry[] pageTable, int idx)
+        public void PageFaultHandler(PageTableEntry[] pageTable, int idx, bool useNRU)
         {
             PageFaultNum++;
-            PhysPage physPage = PhysPageFreeList.Count > 0 ? GetFreePage() : SelectPageForReplacement();
+            PhysPage physPage = PhysPageFreeList.Count > 0 ? GetFreePage() : SelectPageForReplacement(useNRU);
 
             physPage.PageTable = pageTable;
             physPage.Idx = idx;
@@ -44,9 +44,9 @@ namespace PageReplacementLab
             return physPage;
         }
 
-        private PhysPage SelectPageForReplacement()
+        private PhysPage SelectPageForReplacement(bool useNRU)
         {
-            return random.Next(2) == 0 ? RandomReplacement() : NRUReplacement();
+            return useNRU ? NRUReplacement() : RandomReplacement();
         }
 
         private PhysPage RandomReplacement()
@@ -57,25 +57,33 @@ namespace PageReplacementLab
             return selectedPage;
         }
 
-        private PhysPage NRUReplacement()
+        public PhysPage NRUReplacement()
         {
-            var candidates = PhysPageBusyList
-                .Where(page => page.PageTable != null && page.PageTable.Length > page.Idx && !page.PageTable[page.Idx].R)
-                .ToList();
+             List<PhysPage> class0 = new List<PhysPage>(); // R=0, M=0
+             List<PhysPage> class1 = new List<PhysPage>(); // R=0, M=1
+             List<PhysPage> class2 = new List<PhysPage>(); // R=1, M=0
+             List<PhysPage> class3 = new List<PhysPage>(); // R=1, M=1
 
-            PhysPage selectedPage;
-            if (candidates.Count > 0)
+             foreach (var page in PhysPageBusyList)
             {
-                selectedPage = candidates[random.Next(candidates.Count)];
-                Console.WriteLine($"Page replacement: [PPN: {selectedPage.PPN}] (NRU)");
-            }
-            else
-            {
-                selectedPage = RandomReplacement();
-            }
+                var pageEntry = page.PageTable[page.Idx];
 
-            return selectedPage;
+                 if (!pageEntry.R && !pageEntry.M)
+                 class0.Add(page); // R=0, M=0
+                else if (!pageEntry.R && pageEntry.M)
+                 class1.Add(page); // R=0, M=1
+                 else if (pageEntry.R && !pageEntry.M)
+                 class2.Add(page); // R=1, M=0
+                 else
+                class3.Add(page); // R=1, M=1
+             }
+
+            if (class0.Count > 0) return class0[0];
+            if (class1.Count > 0) return class1[0];
+            if (class2.Count > 0) return class2[0];
+            return class3.Count > 0 ? class3[0] : null;
         }
+
 
         public void FreeProc(Proc proc)
         {

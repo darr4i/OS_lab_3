@@ -23,16 +23,17 @@ namespace PageReplacementLab
             reqLimit = rnd.Next(1000, 1501); 
         }
 
-        public void AccessPages(int minReq, int maxReq, MMU mmu)
+        public void AccessPages(int minReq, int maxReq, MMU mmu, bool useNRU)
         {
+             Random rnd = new Random();
             int req = rnd.Next(minReq, maxReq + 1);
+
             for (int i = 0; i < req; i++)
             {
-                int idx = (rnd.Next(100) < 90) ? workingSet[rnd.Next(workingSet.Length)] : rnd.Next(PageTable.Length);
-                bool isWrite = rnd.Next(100) < 30;
-                mmu.AccessPage(PageTable, idx, isWrite);
-                reqCount++;
-            }
+             int idx = rnd.Next(PageTable.Length);
+             bool isWrite = rnd.Next(100) < 30;
+             mmu.AccessPage(PageTable, idx, isWrite, useNRU);
+             }
         }
 
         private int[] GenerateWorkingSet(int size, int maxIdx)
